@@ -1,0 +1,29 @@
+.headerRoot {
+	background-color: #b2f0e3;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.messageHeaderStart {
+	background-color: #b2f0e3;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.messageHeaderEnd {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+	padding: 0.2rem;
+	background-color: #fff;
+}
+
+.input {
+	width: 100%;
+	font-size: 1rem;
+	border: none;
+	outline: none;
+}

@@ -1,4 +1,5 @@
 * {
+	font-family: "Roboto", sans-serif;
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
@@ -16,4 +17,5 @@ html {
 	min-height: -webkit-fill-available;
 	min-height: fill-available;
 	background-color: #f1f1f1;
+	height: 100%;
 }
