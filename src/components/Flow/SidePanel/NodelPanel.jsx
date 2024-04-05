@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import toast from "react-hot-toast";
 
 import Button from "../../common/Button/Button";
 import { getAllNodeTypes } from "../../Nodes/helper";
@@ -24,6 +25,8 @@ const NodelPanel = ({ handleSidePanelClose }) => {
 
 	const onTouchStart = (nodeType) => {
 		handleNodeAdd(nodeType);
+		// User feedback when node is added
+		toast.success("Node Added");
 		onDrag();
 	};
 

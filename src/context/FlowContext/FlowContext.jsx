@@ -206,7 +206,7 @@ const FlowContextProviderWrapper = ({ children, defaultData }) => {
 					{
 						id: nanoid(),
 						type,
-						position: { x: bounds.x, y: bounds.y },
+						position: { x: bounds.x, y: bounds.y - 100 }, //Add offset to avoid overlapping on nodes
 						data: getNodeDefaultData(type), // Helper function used to get the default data object for each node type
 					},
 				],
