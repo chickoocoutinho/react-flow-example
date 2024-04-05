@@ -79,6 +79,10 @@
 	transform: rotate(0deg);
 }
 
+.deleteNode {
+	display: none;
+}
+
 @media (max-width: 1024px) {
 	.nodePanelRoot {
 		grid-template-columns: 1fr;
@@ -93,5 +97,9 @@
 		right: 0;
 		width: 15rem;
 		padding-bottom: 4rem;
+	}
+
+	.deleteNode {
+		display: block;
 	}
 }

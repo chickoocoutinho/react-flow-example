@@ -214,6 +214,16 @@ const FlowContextProviderWrapper = ({ children, defaultData }) => {
 		});
 	};
 
+	// Function to delete a node
+	const handleNodeDelete = (id) => {
+		setFlowState((state) => {
+			return {
+				...state,
+				nodes: state.nodes.filter((node) => node.id !== id),
+			};
+		});
+	};
+
 	return (
 		<FlowContext.Provider
 			value={{
@@ -229,6 +239,7 @@ const FlowContextProviderWrapper = ({ children, defaultData }) => {
 				onDragOver,
 				handleSelectionChange,
 				handleNodeAdd,
+				handleNodeDelete,
 			}}
 		>
 			{children}
