@@ -1,11 +1,16 @@
+import { useContext } from "react";
+
 import Button from "../../common/Button/Button";
 import { getAllNodeTypes } from "../../Nodes/helper";
 import styles from "./sidePanel.module.css";
+import FlowContext from "../../../context/FlowContext/FlowContext";
 
 // Get an array of all node tyoes
 const nodes = getAllNodeTypes();
 
 const NodelPanel = ({ handleSidePanelClose }) => {
+	const { handleNodeAdd } = useContext(FlowContext);
+
 	const onDragStart = (event, nodeType) => {
 		//On drag handler for drang and drop functionality
 		event.dataTransfer.setData("application/reactflow", nodeType);
@@ -17,6 +22,11 @@ const NodelPanel = ({ handleSidePanelClose }) => {
 		handleSidePanelClose();
 	};
 
+	const onTouchStart = (nodeType) => {
+		handleNodeAdd(nodeType);
+		onDrag();
+	};
+
 	return (
 		<div className={styles.nodePanelRoot}>
 			{nodes.map((node) => (
@@ -25,6 +35,7 @@ const NodelPanel = ({ handleSidePanelClose }) => {
 					key={node.label}
 					onDragStart={(event) => onDragStart(event, node.type)}
 					onDrag={onDrag}
+					onTouchStart={() => onTouchStart(node.type)}
 				>
 					<div className={styles.nodePanelButtonContent}>
 						<node.icon className={styles.nodePanelButtonIcon} />

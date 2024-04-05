@@ -8,6 +8,7 @@ import {
 	getOutgoers,
 	getIncomers,
 	useReactFlow,
+	getNodesBounds,
 } from "reactflow";
 import toast from "react-hot-toast";
 import { nanoid } from "nanoid";
@@ -194,6 +195,25 @@ const FlowContextProviderWrapper = ({ children, defaultData }) => {
 		[reactFlow]
 	);
 
+	// Function to add a single node withing the node bounds
+	const handleNodeAdd = (type) => {
+		setFlowState((state) => {
+			const bounds = getNodesBounds(state.nodes);
+			return {
+				...state,
+				nodes: [
+					...state.nodes,
+					{
+						id: nanoid(),
+						type,
+						position: { x: bounds.x, y: bounds.y },
+						data: getNodeDefaultData(type), // Helper function used to get the default data object for each node type
+					},
+				],
+			};
+		});
+	};
+
 	return (
 		<FlowContext.Provider
 			value={{
@@ -208,6 +228,7 @@ const FlowContextProviderWrapper = ({ children, defaultData }) => {
 				onDrop,
 				onDragOver,
 				handleSelectionChange,
+				handleNodeAdd,
 			}}
 		>
 			{children}
