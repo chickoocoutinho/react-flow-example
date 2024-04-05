@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import {
 	applyEdgeChanges,
 	applyNodeChanges,
@@ -21,12 +21,23 @@ import {
 
 const FlowContext = createContext({});
 
-const FlowContextProviderWrapper = ({ children }) => {
+const FlowContextProviderWrapper = ({ children, defaultData }) => {
 	const [flowState, setFlowState] = useState({
 		edges: [],
 		nodes: [],
 		selectedNode: null,
 	});
+
+	useEffect(() => {
+		//Sync default data from parent with store
+		if (defaultData) {
+			console.log(defaultData);
+			setFlowState({
+				...defaultData,
+				selectedNode: null,
+			});
+		}
+	}, [defaultData]);
 
 	const reactFlow = useReactFlow();
 
@@ -204,10 +215,12 @@ const FlowContextProviderWrapper = ({ children }) => {
 	);
 };
 
-export const FlowContextProvider = ({ children }) => {
+export const FlowContextProvider = ({ children, defaultData }) => {
 	return (
 		<ReactFlowProvider>
-			<FlowContextProviderWrapper>{children}</FlowContextProviderWrapper>
+			<FlowContextProviderWrapper defaultData={defaultData}>
+				{children}
+			</FlowContextProviderWrapper>
 		</ReactFlowProvider>
 	);
 };
