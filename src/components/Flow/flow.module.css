@@ -1,0 +1,24 @@
+.flowRoot {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.flowContentRoot {
+	height: 100%;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}
+
+.sidePanelRoot {
+	height: 100%;
+	border: 2px solid #dadada;
+	overflow: auto;
+}
+
+.saveButtonRoot {
+	padding: 1rem;
+	display: flex;
+	justify-content: flex-end;
+	background-color: #f3f3f3;
+}

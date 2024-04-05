@@ -1,33 +1,45 @@
 import { useContext } from "react";
-import ReactFlow, { Controls, Background } from "reactflow";
+import ReactFlow from "reactflow";
+
 import "reactflow/dist/style.css";
-import FlowContext from "../../context/FlowContext";
+
+import FlowContext from "../../context/FlowContext/FlowContext";
+import SaveButton from "./SaveButton";
+import SidePanel from "./SidePanel";
+import styles from "./flow.module.css";
+
+const proOptions = { hideAttribution: true };
 
 const Flow = () => {
 	const {
 		nodeTypes,
-
 		edges,
 		nodes,
 		onNodesChange,
 		onEdgesChange,
-		onConnect,
+		onSingleConnect,
+		onDrop,
+		onDragOver,
 	} = useContext(FlowContext);
 
 	return (
-		<div style={{ height: "100%" }}>
-			<ReactFlow
-				nodes={nodes}
-				onNodesChange={onNodesChange}
-				edges={edges}
-				onEdgesChange={onEdgesChange}
-				onConnect={onConnect}
-				nodeTypes={nodeTypes}
-				fitView
-			>
-				<Background />
-				<Controls />
-			</ReactFlow>
+		<div className={styles.flowRoot}>
+			<SaveButton />
+			<div className={styles.flowContentRoot}>
+				<ReactFlow
+					nodes={nodes}
+					onNodesChange={onNodesChange}
+					edges={edges}
+					onEdgesChange={onEdgesChange}
+					onConnect={onSingleConnect}
+					onDrop={onDrop}
+					onDragOver={onDragOver}
+					nodeTypes={nodeTypes}
+					proOptions={proOptions}
+					fitView
+				/>
+				<SidePanel />
+			</div>
 		</div>
 	);
 };

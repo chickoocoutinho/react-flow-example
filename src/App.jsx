@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Flow from "./components/Flow/Flow";
+import { Toaster } from "react-hot-toast";
+
+import ChatFlowBuilder from "./pages/ChatFlowBuilder";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
 		<>
-			<Flow />
+			<Toaster />
+			<ChatFlowBuilder />
 		</>
 	);
 }
