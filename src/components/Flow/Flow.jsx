@@ -5,7 +5,7 @@ import "reactflow/dist/style.css";
 
 import FlowContext from "../../context/FlowContext/FlowContext";
 import SaveButton from "./SaveButton";
-import SidePanel from "./SidePanel";
+import SidePanel from "./SidePanel/SidePanel";
 import styles from "./flow.module.css";
 
 const proOptions = { hideAttribution: true };

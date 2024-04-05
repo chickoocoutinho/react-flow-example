@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import styles from "./button.module.css";
 
-const Button = ({ children, ...props }) => {
+const Button = ({ children, className, ...props }) => {
 	return (
-		<button className={styles.root} {...props}>
+		<button className={clsx(styles.root, className && className)} {...props}>
 			{children}
 		</button>
 	);

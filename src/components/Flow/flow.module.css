@@ -10,12 +10,6 @@
 	grid-template-columns: 2fr 1fr;
 }
 
-.sidePanelRoot {
-	height: 100%;
-	border: 2px solid #dadada;
-	overflow: auto;
-}
-
 .saveButtonRoot {
 	padding: 1rem;
 	display: flex;

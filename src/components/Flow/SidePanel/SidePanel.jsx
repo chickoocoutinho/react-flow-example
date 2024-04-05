@@ -1,8 +1,8 @@
 import { useContext } from "react";
 
-import FlowContext from "../../context/FlowContext/FlowContext";
+import FlowContext from "../../../context/FlowContext/FlowContext";
 import ControlPanel from "./ControlPanel";
-import styles from "./flow.module.css";
+import styles from "./sidePanel.module.css";
 
 const SidePanel = () => {
 	const { selectedNode } = useContext(FlowContext);

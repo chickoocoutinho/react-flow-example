@@ -18,5 +18,35 @@ export const getAllNodeTypes = () => {
 			icon: MessageNodeIcon,
 			label: "Message",
 		},
+		{
+			type: MessageNodeType,
+			icon: MessageNodeIcon,
+			label: "Message2",
+		},
+		{
+			type: MessageNodeType,
+			icon: MessageNodeIcon,
+			label: "Message3",
+		},
+		{
+			type: MessageNodeType,
+			icon: MessageNodeIcon,
+			label: "Message32",
+		},
+		{
+			type: MessageNodeType,
+			icon: MessageNodeIcon,
+			label: "Message5",
+		},
+		{
+			type: MessageNodeType,
+			icon: MessageNodeIcon,
+			label: "Message4",
+		},
+		{
+			type: MessageNodeType,
+			icon: MessageNodeIcon,
+			label: "Message43",
+		},
 	];
 };
