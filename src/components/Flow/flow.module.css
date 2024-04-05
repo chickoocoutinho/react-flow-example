@@ -11,8 +11,14 @@
 }
 
 .saveButtonRoot {
-	padding: 1rem;
+	padding: 0.5rem 1rem;
 	display: flex;
 	justify-content: flex-end;
 	background-color: var(--bg-grey);
+}
+
+@media (max-width: 768px) {
+	.flowContentRoot {
+		grid-template-columns: 1fr;
+	}
 }

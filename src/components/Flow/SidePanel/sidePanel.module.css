@@ -2,6 +2,9 @@
 	height: 100%;
 	border: 2px solid var(--border-grey);
 	overflow: auto;
+	background-color: var(--white);
+	z-index: 100;
+	transition: 0.4s;
 }
 
 .nodePanelRoot {
@@ -39,4 +42,56 @@
 .settingsPanelContent {
 	padding: 1rem;
 	border-bottom: 2px solid var(--border-grey);
+}
+
+.sidePanelOpen {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.sidePanelClose {
+	clip-path: polygon(100% 0%, 100% 0, 100% 100%, 100% 100%);
+}
+
+.toggleIcon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	position: fixed;
+	bottom: 1rem;
+	right: 0;
+	padding: 0.5rem 1rem;
+	background-color: var(--primary-light);
+	color: var(--white);
+	border-top-left-radius: 1.25rem;
+	border-bottom-left-radius: 1.25rem;
+	z-index: 110;
+}
+
+.chevronRight {
+	transition: 0.5s;
+	transform: rotate(180deg);
+}
+
+.chevronLeft {
+	transition: 0.5s;
+	transform: rotate(0deg);
+}
+
+@media (max-width: 1024px) {
+	.nodePanelRoot {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 768px) {
+	.sidePanelRoot {
+		position: fixed;
+		top: 3.9rem;
+		bottom: 0;
+		right: 0;
+		width: 15rem;
+		padding-bottom: 4rem;
+	}
 }

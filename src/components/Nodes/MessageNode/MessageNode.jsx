@@ -32,9 +32,11 @@ const MessageNode = ({ data, selected }) => {
 			headerProps={headerProps}
 			selected={selected}
 		>
-			<p className={clsx(!data.message && styles.textGrey)}>
+			<pre // Used pre tag to maintain formatting of text as per user imput
+				className={clsx(styles.messageNodeText, !data.message && styles.textGrey)}
+			>
 				{data.message ? data.message : "Click to enter message"}
-			</p>
+			</pre>
 		</BaseNode>
 	);
 };

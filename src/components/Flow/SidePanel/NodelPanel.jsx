@@ -5,11 +5,16 @@ import styles from "./sidePanel.module.css";
 // Get an array of all node tyoes
 const nodes = getAllNodeTypes();
 
-const NodelPanel = () => {
+const NodelPanel = ({ handleSidePanelClose }) => {
 	const onDragStart = (event, nodeType) => {
 		//On drag handler for drang and drop functionality
 		event.dataTransfer.setData("application/reactflow", nodeType);
 		event.dataTransfer.effectAllowed = "move";
+	};
+
+	const onDrag = () => {
+		//Close side panel to allow easy drag and drop  on smaller screens
+		handleSidePanelClose();
 	};
 
 	return (
@@ -19,6 +24,7 @@ const NodelPanel = () => {
 					draggable
 					key={node.label}
 					onDragStart={(event) => onDragStart(event, node.type)}
+					onDrag={onDrag}
 				>
 					<div className={styles.nodePanelButtonContent}>
 						<node.icon className={styles.nodePanelButtonIcon} />

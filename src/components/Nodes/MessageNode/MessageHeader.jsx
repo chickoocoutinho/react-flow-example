@@ -7,7 +7,7 @@ const MessageHeader = () => {
 	return (
 		<>
 			<div className={styles.messageHeaderStart}>
-				<MessageSvg />
+				<MessageSvg height="1rem" width="1rem" />
 				<p>Send Message</p>
 			</div>
 			<div className={styles.messageHeaderEnd}>

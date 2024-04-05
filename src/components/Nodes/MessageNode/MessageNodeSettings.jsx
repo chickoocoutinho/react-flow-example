@@ -23,6 +23,7 @@ const MessageNodeSettings = () => {
 
 	const handleMessageChange = (event) => {
 		const value = event.target.value;
+		console.log(value);
 		setMessage(value);
 		debouncedUpdate(selectedNode.id, {
 			message: value,
