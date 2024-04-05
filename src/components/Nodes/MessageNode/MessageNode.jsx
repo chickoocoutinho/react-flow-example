@@ -4,6 +4,7 @@ import MessageHeader from "./MessageHeader";
 import styles from "./messageNode.module.css";
 
 import MessageSvg from "../../../assets/message-circle-lines-alt.svg";
+import clsx from "clsx";
 
 const sourceHandlers = [
 	{
@@ -21,15 +22,18 @@ const headerProps = {
 	className: styles.headerRoot,
 };
 
-const MessageNode = ({ data }) => {
+const MessageNode = ({ data, selected }) => {
 	return (
 		<BaseNode
 			sourceHandlers={sourceHandlers}
 			targetHandlers={targetHandlers}
 			header={<MessageHeader />}
 			headerProps={headerProps}
+			className={clsx(selected && styles.selected)}
 		>
-			<p>{data.message}</p>
+			<p className={clsx(!data.message && styles.textGrey)}>
+				{data.message ? data.message : "Click to enter message"}
+			</p>
 		</BaseNode>
 	);
 };

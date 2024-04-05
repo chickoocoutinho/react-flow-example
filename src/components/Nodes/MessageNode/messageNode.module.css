@@ -27,3 +27,29 @@
 	border: none;
 	outline: none;
 }
+
+.textGrey {
+	color: #999;
+}
+
+.selected {
+	border: 2px solid #3f50b5;
+}
+
+.messageNodeSettingsRoot {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.messageNodeSettingsText {
+	color: #999;
+}
+
+.messageNodeSettingsInput {
+	border-radius: 0.4rem;
+	min-height: 7rem;
+	border: 1px solid #dadada;
+	padding: 0.8rem;
+	font-size: 1rem;
+}

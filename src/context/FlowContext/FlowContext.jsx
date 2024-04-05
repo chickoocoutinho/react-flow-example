@@ -44,6 +44,27 @@ const FlowContextProviderWrapper = ({ children }) => {
 	});
 
 	const reactFlow = useReactFlow();
+
+	const handleSelectionChange = (node) => {
+		setFlowState((state) => {
+			let nodes = [...state.nodes];
+			if (!node && state.selectedNode) {
+				let selectedNodeIndex = nodes.findIndex(
+					(node) => node.id === state.selectedNode.id
+				);
+				if (selectedNodeIndex !== -1) {
+					nodes[selectedNodeIndex].selected = false;
+				}
+			}
+
+			return {
+				...state,
+				nodes,
+				selectedNode: node,
+			};
+		});
+	};
+
 	useOnSelectionChange({
 		onChange: ({ nodes }) => {
 			setFlowState((state) => ({
@@ -164,6 +185,7 @@ const FlowContextProviderWrapper = ({ children }) => {
 				updateNodesData,
 				onDrop,
 				onDragOver,
+				handleSelectionChange,
 			}}
 		>
 			{children}

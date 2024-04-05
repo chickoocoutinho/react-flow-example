@@ -10,6 +10,7 @@ const BaseNode = ({
 	header,
 	headerProps,
 	children,
+	className,
 }) => {
 	return (
 		<>
@@ -26,7 +27,7 @@ const BaseNode = ({
 					style={handler.style}
 				/>
 			))}
-			<div className={styles.root}>
+			<div className={clsx(styles.root, className)}>
 				{header && (
 					<div
 						{...headerProps}
