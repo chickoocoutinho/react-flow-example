@@ -17,7 +17,7 @@ const Flow = () => {
 		nodes,
 		onNodesChange,
 		onEdgesChange,
-		onSingleConnect,
+		onConnect,
 		onDrop,
 		onDragOver,
 	} = useContext(FlowContext);
@@ -31,7 +31,7 @@ const Flow = () => {
 					onNodesChange={onNodesChange}
 					edges={edges}
 					onEdgesChange={onEdgesChange}
-					onConnect={onSingleConnect}
+					onConnect={onConnect}
 					onDrop={onDrop}
 					onDragOver={onDragOver}
 					nodeTypes={nodeTypes}

@@ -12,8 +12,11 @@ import {
 import toast from "react-hot-toast";
 import { nanoid } from "nanoid";
 
-import { getNodeDefaultData } from "../../components/Nodes/helper";
-import { nodeTypes, markerEnd } from "./constants";
+import {
+	getMaxIncomingOutgoingEdgeCount,
+	getNodeDefaultData,
+} from "../../components/Nodes/helper";
+import { nodeTypes, markerEnd, getSourceTargetNode } from "./constants";
 
 const FlowContext = createContext({});
 
@@ -94,27 +97,39 @@ const FlowContextProviderWrapper = ({ children }) => {
 	);
 
 	const onConnect = useCallback((params) => {
-		setFlowState((state) => ({
-			...state,
-			edges: addEdge(
-				{
-					...params,
-					markerEnd,
-				},
-				state.edges
-			),
-		}));
-	}, []);
-
-	const onSingleConnect = useCallback((params) => {
 		setFlowState((state) => {
+			const [sourceNode, targetNode] = getSourceTargetNode({
+				nodes: state.nodes,
+				sourceId: params.source,
+				targetId: params.target,
+			});
+
+			if (!sourceNode || !targetNode) {
+				toast.error("Invalid Connection");
+				return state;
+			}
+
 			const outgoers = getOutgoers({ id: params.source }, state.nodes, state.edges);
 			const incomers = getIncomers({ id: params.target }, state.nodes, state.edges);
 
-			if (outgoers.length !== 0 || incomers.length !== 0) {
-				//Valid connection need to have 0 outgoers and incomers
+			const { outgoing } = getMaxIncomingOutgoingEdgeCount(sourceNode.type);
+			const { incoming } = getMaxIncomingOutgoingEdgeCount(targetNode.type);
 
-				toast.error("Only one edge is allowed");
+			if (outgoers.length === outgoing) {
+				toast.error(
+					`Source Node can have only have ${outgoing} outgoing edge${
+						outgoing !== 1 ? "s" : ""
+					}`
+				);
+				return state;
+			}
+
+			if (incomers.length === incoming) {
+				toast.error(
+					`Target Node can have only have ${incoming} incoming edge${
+						incoming !== 1 ? "s" : ""
+					}`
+				);
 				return state;
 			}
 
@@ -181,7 +196,6 @@ const FlowContextProviderWrapper = ({ children }) => {
 				onNodesChange,
 				onEdgesChange,
 				onConnect,
-				onSingleConnect,
 				updateNodesData,
 				onDrop,
 				onDragOver,

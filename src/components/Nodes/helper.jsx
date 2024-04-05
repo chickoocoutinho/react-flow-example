@@ -1,6 +1,13 @@
 import { MessageNodeIcon, MessageNodeType } from "./MessageNode/MessageNode";
 import MessageNodeSettings from "./MessageNode/MessageNodeSettings";
 
+const maxEdgeCount = {
+	[MessageNodeType]: {
+		incoming: 1,
+		outgoing: 1,
+	},
+};
+
 const nodeLables = {
 	[MessageNodeType]: "Message",
 };
@@ -39,4 +46,15 @@ export const getNodeSettingsComponent = ({ messageType, data }) => {
 		default:
 			return <></>;
 	}
+};
+
+export const getMaxIncomingOutgoingEdgeCount = (messageType) => {
+	let edgeCount = maxEdgeCount[messageType];
+
+	return (
+		edgeCount ?? {
+			incoming: 0,
+			outgoing: 0,
+		}
+	);
 };
