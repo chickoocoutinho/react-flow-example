@@ -4,10 +4,10 @@ import FlowContext from "../../../context/FlowContext/FlowContext";
 import NodelPanel from "./NodelPanel";
 import styles from "./sidePanel.module.css";
 import SettingsPanel from "./SettingsPanel";
-import clsx from "clsx";
 
 const SidePanel = () => {
 	const { selectedNode } = useContext(FlowContext);
+	//View is toggled between settings panel and nodes panel based on selectedNode
 
 	return (
 		<div className={styles.sidePanelRoot}>

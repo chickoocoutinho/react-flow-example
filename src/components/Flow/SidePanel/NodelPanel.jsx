@@ -2,10 +2,12 @@ import Button from "../../common/Button/Button";
 import { getAllNodeTypes } from "../../Nodes/helper";
 import styles from "./sidePanel.module.css";
 
+// Get an array of all node tyoes
 const nodes = getAllNodeTypes();
 
 const NodelPanel = () => {
 	const onDragStart = (event, nodeType) => {
+		//On drag handler for drang and drop functionality
 		event.dataTransfer.setData("application/reactflow", nodeType);
 		event.dataTransfer.effectAllowed = "move";
 	};

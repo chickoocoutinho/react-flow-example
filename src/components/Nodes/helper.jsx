@@ -12,6 +12,7 @@ const nodeLables = {
 	[MessageNodeType]: "Message",
 };
 
+// Helper function to get the Default Data object for each node type
 export const getNodeDefaultData = (type) => {
 	switch (type) {
 		case MessageNodeType:
@@ -23,6 +24,7 @@ export const getNodeDefaultData = (type) => {
 	}
 };
 
+// Helper function to get an array of all node type to be displayed in the nodes panel
 export const getAllNodeTypes = () => {
 	return [
 		{
@@ -33,23 +35,25 @@ export const getAllNodeTypes = () => {
 	];
 };
 
-export const getNodeSettingsHeading = (messageType) => {
-	let label = nodeLables[messageType];
-
+// Helper Function to get the hedding text of the settings panel based on node type
+export const getNodeSettingsHeading = (nodeType) => {
+	let label = nodeLables[nodeType];
 	return label ?? "Go Back";
 };
 
-export const getNodeSettingsComponent = ({ messageType, data }) => {
-	switch (messageType) {
+// Helper function to render content of settings panel based on node type
+export const getNodeSettingsComponent = (nodeType) => {
+	switch (nodeType) {
 		case MessageNodeType:
-			return <MessageNodeSettings data={data} />;
+			return <MessageNodeSettings />;
 		default:
 			return <></>;
 	}
 };
 
-export const getMaxIncomingOutgoingEdgeCount = (messageType) => {
-	let edgeCount = maxEdgeCount[messageType];
+// Helper function to get the maximum count incoming and outgoing edges based on node type
+export const getMaxIncomingOutgoingEdgeCount = (nodeType) => {
+	let edgeCount = maxEdgeCount[nodeType];
 
 	return (
 		edgeCount ?? {

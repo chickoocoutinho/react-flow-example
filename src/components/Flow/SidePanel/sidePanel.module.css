@@ -1,6 +1,6 @@
 .sidePanelRoot {
 	height: 100%;
-	border: 2px solid #dadada;
+	border: 2px solid var(--border-grey);
 	overflow: auto;
 }
 
@@ -27,7 +27,7 @@
 .settingsPanelHeader {
 	text-align: center;
 	padding: 1rem;
-	border-bottom: 2px solid #dadada;
+	border-bottom: 2px solid var(--border-grey);
 	display: flex;
 	align-items: center;
 }
@@ -38,5 +38,5 @@
 
 .settingsPanelContent {
 	padding: 1rem;
-	border-bottom: 2px solid #dadada;
+	border-bottom: 2px solid var(--border-grey);
 }

@@ -1,7 +1,7 @@
+import styles from "./messageNode.module.css";
+
 import MessageSvg from "../../../assets/message-circle-lines-alt.svg";
 import WhatsappSvg from "../../../assets/whatsapp-color.svg";
-
-import styles from "./messageNode.module.css";
 
 const MessageHeader = () => {
 	return (

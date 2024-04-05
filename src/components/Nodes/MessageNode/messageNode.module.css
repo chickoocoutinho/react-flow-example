@@ -1,5 +1,5 @@
 .headerRoot {
-	background-color: #b2f0e3;
+	background-color: var(--bg-green);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -7,7 +7,7 @@
 }
 
 .messageHeaderStart {
-	background-color: #b2f0e3;
+	background-color: var(--bg-green);
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -18,7 +18,7 @@
 	height: 1.5rem;
 	border-radius: 50%;
 	padding: 0.2rem;
-	background-color: #fff;
+	background-color: var(--white);
 }
 
 .input {
@@ -29,11 +29,7 @@
 }
 
 .textGrey {
-	color: #999;
-}
-
-.selected {
-	border: 2px solid #3f50b5;
+	color: var(--text-muted);
 }
 
 .messageNodeSettingsRoot {
@@ -43,13 +39,13 @@
 }
 
 .messageNodeSettingsText {
-	color: #999;
+	color: var(--text-muted);
 }
 
 .messageNodeSettingsInput {
 	border-radius: 0.4rem;
 	min-height: 7rem;
-	border: 1px solid #dadada;
+	border: 1px solid var(--border-grey);
 	padding: 0.8rem;
 	font-size: 1rem;
 }

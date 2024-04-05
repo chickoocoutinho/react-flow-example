@@ -12,49 +12,34 @@ import {
 import toast from "react-hot-toast";
 import { nanoid } from "nanoid";
 
+import { nodeTypes, markerEnd, getSourceTargetNode } from "./constants";
+
 import {
 	getMaxIncomingOutgoingEdgeCount,
 	getNodeDefaultData,
 } from "../../components/Nodes/helper";
-import { nodeTypes, markerEnd, getSourceTargetNode } from "./constants";
 
 const FlowContext = createContext({});
 
 const FlowContextProviderWrapper = ({ children }) => {
 	const [flowState, setFlowState] = useState({
 		edges: [],
-		nodes: [
-			{
-				id: "1",
-				data: { message: "Hello" },
-				position: { x: 0, y: 0 },
-				type: "messageNode",
-			},
-			{
-				id: "2",
-				data: { message: "World" },
-				position: { x: 100, y: 100 },
-				type: "messageNode",
-			},
-			{
-				id: "3",
-				data: { message: "World" },
-				position: { x: 200, y: 200 },
-				type: "messageNode",
-			},
-		],
+		nodes: [],
 		selectedNode: null,
 	});
 
 	const reactFlow = useReactFlow();
 
+	//Function to manually Alter the selected node state of react flow
 	const handleSelectionChange = (node) => {
 		setFlowState((state) => {
 			let nodes = [...state.nodes];
 			if (!node && state.selectedNode) {
+				//1. Find Selected Node
 				let selectedNodeIndex = nodes.findIndex(
 					(node) => node.id === state.selectedNode.id
 				);
+				//2. Set node selected flag to false
 				if (selectedNodeIndex !== -1) {
 					nodes[selectedNodeIndex].selected = false;
 				}
@@ -68,6 +53,7 @@ const FlowContextProviderWrapper = ({ children }) => {
 		});
 	};
 
+	//Hook to get selected node from react flow
 	useOnSelectionChange({
 		onChange: ({ nodes }) => {
 			setFlowState((state) => ({
@@ -77,8 +63,10 @@ const FlowContextProviderWrapper = ({ children }) => {
 		},
 	});
 
-	//Needs to be a callback because nodes and edges keep changing
+	//Functions passed to ReactFlow are memorised because the documentation mentions
+	// Not doing this can incur a slight performance penalty.
 	const onNodesChange = useCallback(
+		//Function used to hande node state change
 		(changes) =>
 			setFlowState((state) => ({
 				...state,
@@ -88,6 +76,7 @@ const FlowContextProviderWrapper = ({ children }) => {
 	);
 
 	const onEdgesChange = useCallback(
+		//Function used to hande edge state change
 		(changes) =>
 			setFlowState((state) => ({
 				...state,
@@ -96,8 +85,11 @@ const FlowContextProviderWrapper = ({ children }) => {
 		[]
 	);
 
+	// Function used to hande Connections
+	// function contains connection Validation based on number of incoming and outgoing nodes
 	const onConnect = useCallback((params) => {
 		setFlowState((state) => {
+			//1. Get Source and target node from id (This is done to get the type of the node)
 			const [sourceNode, targetNode] = getSourceTargetNode({
 				nodes: state.nodes,
 				sourceId: params.source,
@@ -109,12 +101,15 @@ const FlowContextProviderWrapper = ({ children }) => {
 				return state;
 			}
 
+			//2. Get the outgoing edges from source and incoming edges to target
 			const outgoers = getOutgoers({ id: params.source }, state.nodes, state.edges);
 			const incomers = getIncomers({ id: params.target }, state.nodes, state.edges);
 
+			//3. Get Maximum number of allowed incoming and outgoing edges
 			const { outgoing } = getMaxIncomingOutgoingEdgeCount(sourceNode.type);
 			const { incoming } = getMaxIncomingOutgoingEdgeCount(targetNode.type);
 
+			//4. If the current edge count is MAX. show user an error
 			if (outgoers.length === outgoing) {
 				toast.error(
 					`Source Node can have only have ${outgoing} outgoing edge${
@@ -133,6 +128,7 @@ const FlowContextProviderWrapper = ({ children }) => {
 				return state;
 			}
 
+			//5. new connection is valid, add the edge
 			return {
 				...state,
 				edges: addEdge({ ...params, markerEnd }, state.edges),
@@ -141,6 +137,7 @@ const FlowContextProviderWrapper = ({ children }) => {
 	}, []);
 
 	const updateNodesData = useCallback(
+		//Function used to update the node's data object
 		({ id, data }) =>
 			setFlowState((state) => ({
 				...state,
@@ -158,15 +155,15 @@ const FlowContextProviderWrapper = ({ children }) => {
 
 	const onDrop = useCallback(
 		(event) => {
-			console.log("Rerendered");
 			event.preventDefault();
 			const type = event.dataTransfer.getData("application/reactflow");
 
-			// check if the dropped element is valid
+			//1. check if the dropped element is valid
 			if (typeof type === "undefined" || !type) {
 				return;
 			}
 
+			//2. Convert the drop position to corresponding position in the react flow element
 			const position = reactFlow.screenToFlowPosition({
 				x: event.clientX,
 				y: event.clientY,
@@ -175,7 +172,7 @@ const FlowContextProviderWrapper = ({ children }) => {
 				id: nanoid(),
 				type,
 				position,
-				data: getNodeDefaultData(type),
+				data: getNodeDefaultData(type), // Helper function used to get the default data object for each node type
 			};
 
 			setFlowState((state) => ({

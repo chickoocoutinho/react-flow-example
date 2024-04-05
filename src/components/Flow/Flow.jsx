@@ -8,6 +8,7 @@ import SaveButton from "./SaveButton";
 import SidePanel from "./SidePanel/SidePanel";
 import styles from "./flow.module.css";
 
+//Flag to remove react flow branding
 const proOptions = { hideAttribution: true };
 
 const Flow = () => {

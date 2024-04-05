@@ -4,6 +4,7 @@ import clsx from "clsx";
 
 import styles from "./baseNode.module.css";
 
+//Base Node component with default styling, All other nodes can be built on top of the base nodeß
 const BaseNode = ({
 	sourceHandlers = [],
 	targetHandlers = [],
@@ -11,6 +12,7 @@ const BaseNode = ({
 	headerProps,
 	children,
 	className,
+	selected,
 }) => {
 	return (
 		<>
@@ -27,7 +29,7 @@ const BaseNode = ({
 					style={handler.style}
 				/>
 			))}
-			<div className={clsx(styles.root, className)}>
+			<div className={clsx(styles.root, className, selected && styles.selected)}>
 				{header && (
 					<div
 						{...headerProps}

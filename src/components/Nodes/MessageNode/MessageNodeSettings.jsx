@@ -1,15 +1,17 @@
 import { useCallback, useContext, useState } from "react";
+
 import FlowContext from "../../../context/FlowContext/FlowContext";
 import debounce from "../../../utils/debounce";
 import styles from "./messageNode.module.css";
 
+// The following Component will br rendered in the Setting Panel when the node is selected
 const MessageNodeSettings = () => {
 	const { selectedNode, updateNodesData } = useContext(FlowContext);
 
 	const [message, setMessage] = useState(selectedNode?.data?.message ?? "");
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedUpdate = useCallback(
+		//updateNodesData updates the react flow state, debounced to reduce rerenders
 		debounce((id, data) => {
 			updateNodesData({
 				id,

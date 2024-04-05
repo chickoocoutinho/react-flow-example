@@ -7,10 +7,13 @@ import FlowContext from "../../../context/FlowContext/FlowContext";
 
 import styles from "./sidePanel.module.css";
 
+// Content of settings panel is dynamically rendered from Nodes helper function
+// This is done to ensure smooth addition of more nodes in the future
 const SettingsPanel = () => {
 	const { selectedNode, handleSelectionChange } = useContext(FlowContext);
 
 	const handleBack = () => {
+		//Manually set the selectedNode to null to close settings panel
 		handleSelectionChange(null);
 	};
 
@@ -23,10 +26,7 @@ const SettingsPanel = () => {
 				<p>{getNodeSettingsHeading(selectedNode.type)}</p>
 			</div>
 			<div className={styles.settingsPanelContent}>
-				{getNodeSettingsComponent({
-					messageType: selectedNode.type,
-					data: selectedNode.data,
-				})}
+				{getNodeSettingsComponent(selectedNode.type)}
 			</div>
 		</div>
 	);
