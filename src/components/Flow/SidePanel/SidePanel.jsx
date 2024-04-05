@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import FlowContext from "../../../context/FlowContext/FlowContext";
-import ControlPanel from "./ControlPanel";
+import NodelPanel from "./NodelPanel";
 import styles from "./sidePanel.module.css";
 
 const SidePanel = () => {
@@ -10,7 +10,7 @@ const SidePanel = () => {
 	return (
 		<div className={styles.sidePanelRoot}>
 			<div>
-				<ControlPanel />
+				<NodelPanel />
 			</div>
 		</div>
 	);

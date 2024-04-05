@@ -4,21 +4,21 @@
 	overflow: auto;
 }
 
-.controlPanelRoot {
+.nodePanelRoot {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 1.2rem;
 	padding: 1rem;
 }
 
-.controlPanelButtonContent {
+.nodePanelButtonContent {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.8rem;
 }
 
-.controlPanelButtonIcon {
+.nodePanelButtonIcon {
 	height: 2.2rem;
 	width: 2.2rem;
 	color: inherit;
