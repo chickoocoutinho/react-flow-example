@@ -149,23 +149,33 @@ All logic to edit/add/delete nodes and edges of the React Flow component are pre
 
 These helper functions allow us to add more nodes without the need to make any code changes in the chat builder.
 
+<br/>
+
 #### getNodeDefaultData
 
 Helper function to get the Default Data object for each node type. Used while adding a new node.
 
+<br/>
+
 #### getAllNodeTypes
 
 Helper function to get an array of all node type to be displayed in the nodes panel
+
+<br/>
 
 #### getNodeSettingsHeading
 
 Helper Function to get the heading text of the settings panel based on node type.
 ![getNodeSettingsHeading](./screenshots/settings-panel-heading.png)
 
+<br/>
+
 #### getNodeSettingsComponent
 
 Helper function to render content of settings panel based on node type
 ![getNodeSettingsComponent](./screenshots/settings-panel-content.png)
+
+<br/>
 
 #### getMaxIncomingOutgoingEdgeCount
 
