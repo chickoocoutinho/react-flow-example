@@ -32,7 +32,6 @@ const FlowContextProviderWrapper = ({ children, defaultData }) => {
 	useEffect(() => {
 		//Sync default data from parent with store
 		if (defaultData) {
-			console.log(defaultData);
 			setFlowState({
 				...defaultData,
 				selectedNode: null,

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import FlowContext from "../../../context/FlowContext/FlowContext";
 import debounce from "../../../utils/debounce";
@@ -9,6 +9,12 @@ const MessageNodeSettings = () => {
 	const { selectedNode, updateNodesData } = useContext(FlowContext);
 
 	const [message, setMessage] = useState(selectedNode?.data?.message ?? "");
+
+	useEffect(() => {
+		// Update message when the selected node changes
+		setMessage(selectedNode.data.message);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [selectedNode.id]);
 
 	const debouncedUpdate = useCallback(
 		//updateNodesData updates the react flow state, debounced to reduce rerenders
@@ -23,7 +29,6 @@ const MessageNodeSettings = () => {
 
 	const handleMessageChange = (event) => {
 		const value = event.target.value;
-		console.log(value);
 		setMessage(value);
 		debouncedUpdate(selectedNode.id, {
 			message: value,
