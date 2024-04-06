@@ -99,11 +99,11 @@ This is an example of how to list things you need to use the software and how to
 
 ### Homepage
 
-##### Desktop Viev
+#### Desktop Viev
 
 ![homepage-settings-panel](./screenshots/homepage-settings-panel.png)
 
-##### Mobile Viev
+#### Mobile Viev
 
 | ![mobile-home-page](./screenshots/mobile-home.jpg) | ![mobile-settings-page](./screenshots/mobile-settings.jpg) |
 | -------------------------------------------------- | ---------------------------------------------------------- |
@@ -114,15 +114,15 @@ This is an example of how to list things you need to use the software and how to
 
 ### Validations
 
-##### Incoming Edge Validation
+#### Incoming Edge Validation
 
 ![incoming-edge-validation](./screenshots/target-edges-validation.png)
 
-##### Outgoing Edge Validation
+#### Outgoing Edge Validation
 
 ![outgoing-edge-validation](./screenshots/source-edges-validation.png)
 
-##### Save Edge Validation
+#### Save Edge Validation
 
 ![save-validation](./screenshots/save-validation.png)
 
@@ -149,24 +149,24 @@ All logic to edit/add/delete nodes and edges of the React Flow component are pre
 
 These helper functions allow us to add more nodes without the need to make any code changes in the chat builder.
 
-##### getNodeDefaultData
+#### getNodeDefaultData
 
 Helper function to get the Default Data object for each node type. Used while adding a new node.
 
-##### getAllNodeTypes
+#### getAllNodeTypes
 
 Helper function to get an array of all node type to be displayed in the nodes panel
 
-##### getNodeSettingsHeading
+#### getNodeSettingsHeading
 
 Helper Function to get the heading text of the settings panel based on node type.
 ![getNodeSettingsHeading](./screenshots/settings-panel-heading.png)
 
-##### getNodeSettingsComponent
+#### getNodeSettingsComponent
 
 Helper function to render content of settings panel based on node type
 ![getNodeSettingsComponent](./screenshots/settings-panel-content.png)
 
-##### getMaxIncomingOutgoingEdgeCount
+#### getMaxIncomingOutgoingEdgeCount
 
 Helper function to get the maximum count incoming and outgoing edges based on node type. This function is used to validate whether on not the connection is valid.
